@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-text</title>
+
+
+</head>
+<body>
+    <div id="app" class="aa">
+
+        <span>{{msg}}</span><br>
+        <span v-text="msg"></span>
+        <br>
+        <span v-html="msg"></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                msg: "<a href=''> 欢迎你!</a>"
+
+            }
+        });
+</script>
+</body>
+</html>

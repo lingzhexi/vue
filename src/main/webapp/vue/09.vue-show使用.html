@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue事件使用</title>
+
+
+</head>
+<body>
+<div id="app">
+    <h2 v-show="false"> v-show</h2>
+    <h2 v-show="isShow"> v-show hello</h2>
+    <h1 v-if="false">袁老一路走好</h1>
+    <h1 v-if="false">吴老一路走好</h1>
+    <h1 v-if="false">浪费粮食</h1>
+    <img  v-if="isShow"  :src="src" v-bind:title="title"/>
+    <img  v-if="isShow"  v-bind:src="src" v-bind:title="title"/>
+    <div>
+        <input type="button" value="点击我改变title" @click="changeTitle('这是修改后的title')">
+    </div>
+    <input type="button" value="点击我改变src" @click="changeSrc('https://gitee.com/lingzhexi/blogImage/raw/master/img2021/05/shiro/20210523165516.png')">
+    <br><input type="button" value="点我显示隐藏" @click="showHide">
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            isShow: true,
+            title: '陈小佳',
+            src: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png'
+        },
+        methods:{
+            showHide(){
+                this.isShow =!this.isShow;
+            },
+            changeTitle(title) {
+                this.title = title;
+            },
+            changeSrc(src) {
+                this.src = src;
+            }
+        }
+    });
+</script>
+</body>
+</html>

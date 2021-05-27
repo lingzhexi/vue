@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue事件使用</title>
+
+
+</head>
+<body>
+<!--
+    1.页面提供按钮
+    2.按钮绑定点击事件
+    3.在单机事件中修改年龄的值，
+-->
+<div id="app" class="aa">
+    <h2>{{msg}}</h2>
+    <h2 v-text="msg"></h2>
+    <span>年龄：{{age}}</span>
+    <br>
+    <input type="button" value="点击改变年龄" v-on:click="changeAge"><br>
+    <input type="button" value="点击改变年龄 Vue 3" @click="changeAge">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            msg: "hello world",
+            age: 23
+        },
+        methods: { //定义vue事件
+            changeAge: function () {
+                //在事件函数中this就是事件实例
+                // console.log(this)
+                // this.age = this.age + 1;
+                this.age++;
+            }
+        }
+    });
+</script>
+</body>
+</html>

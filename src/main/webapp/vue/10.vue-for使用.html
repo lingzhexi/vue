@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10.vue-for使用</title>
+
+
+</head>
+<body>
+<div id="app">
+    {{user.name}}{{user.age}}
+    <br>
+    <span v-for="u in user">
+        {{u}}
+    </span>
+    <br>
+    <span v-for = "(value,key,index) in user">
+        {{key}}:{{value}}
+    </span>
+    <br>
+    <ul>
+        <li v-for="a,index in arr">
+            {{index}}:{{a}}
+        </li>
+    </ul>
+    <ul>
+        <li v-for="u in users":key="u.id">
+            {{u.id}}={{u.name}}==={{u.age}}=={{u.state}}
+        </li>
+    </ul>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            user:{name:"小岑",age:24},
+            arr:["土豆","玉米","小麦"
+            ],
+            users:[
+                {id:1,name:"zhangs",age:25,state:"good"},
+                {id:2,name:"lis",age:25,state:"bad"}
+            ]
+        },
+        methods: {},
+        components: {}
+    });
+</script>
+</body>
+</html>

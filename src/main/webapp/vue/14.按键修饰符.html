@@ -1,0 +1,59 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14.按键修饰符</title>
+
+
+</head>
+<body>
+<div id="app">
+    <!--
+        enter按键修饰符在回车之后触发的事件
+    -->
+    <input type="text" v-model="msg" @keyup.enter="keyups">
+    <input type="text" v-model="msg" @keyup.delete="deleteKey">
+    <input type="text" v-model="msg" @keyup.esc="esckey">
+    <!--其他光标tab到该文本框的时候触发-->
+    <input type="text" v-model="msg" @keyup.tab="tabkey">
+    <input type="text" v-model="msg" @keyup.space="spacekey">
+    <input type="text" v-model="msg" @keyup.left="leftkey">
+    <input type="text" v-model="msg" @keyup.right="rigthkey">
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            msg:''
+        },
+        methods: {
+            keyups() {
+                console.log(this.msg)
+            },
+            deleteKey() {
+                alert("delete")
+            },
+            esckey() {
+                alert("esckey")
+            },
+            tabkey() {
+                alert("tab")
+            },
+            spacekey() {
+                alert("space")
+            },
+            leftkey() {
+                alert("leftKey")
+            },
+            rigthkey() {
+                alert("rightKey")
+            }},
+        components: {}
+    });
+</script>
+</body>
+</html>

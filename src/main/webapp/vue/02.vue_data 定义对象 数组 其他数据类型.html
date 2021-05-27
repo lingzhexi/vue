@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue第一个入门</title>
+
+
+</head>
+<body>
+<div id="app" class = "aa">
+    <h3>{{msg}}</h3>
+    <h3>名称：{{user.name}} 信息：{{user.msg}}</h3>
+    <h3>年龄：{{age}}</h3>
+    <h3>{{list[0]}}==={{list[1]}}==={{list[2]}}</h3>
+    <h3>全称：{{users[0].name}}</h3>
+    <span>{{msg.toUpperCase()}}</span>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '.aa',
+        data: {
+            msg: "hello world",
+            user: {name: "lzx", msg: "欢迎你"},
+            age: 20,
+            list: ['土豆', '番茄', "地瓜"],
+            users:[{name: "ls", msg: "lisi"},{name: "zs", msg: "zhangsan"}]
+
+        }
+    });
+</script>
+</body>
+</html>

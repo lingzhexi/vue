@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12.记事本综合案例</title>
+<!--
+1.放入vue示例 动态数据
+-->
+
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="msg"> <input type="button" value="添加到记事本" @click="save()">
+    <br>
+    <ul>
+        <li v-for="item,index in lists">
+            {{index+1}}: {{item}} <a href="javascript:" @click="delItem(index)">删除</a>
+        </li>
+    </ul>
+    <span>总数量：{{lists.length}} 条</span> <input type="button" v-show="lists.length!=0" value="删除所有" @click="delAll()">
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            lists:['今天下了一场暴雨','晚上回家吃小龙虾'],
+            msg:""
+        },
+        methods: {
+            save() {
+                if (''!=this.msg) {
+                    this.lists.push(this.msg);
+                    this.msg = '';
+                }
+            },
+            delItem(index) {
+                this.lists.splice(index, 1);
+            },
+            delAll() {
+                this.lists = [];
+            }
+        },
+        components: {}
+    });
+</script>
+</body>
+</html>

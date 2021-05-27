@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue事件使用</title>
+
+
+</head>
+<body>
+<div id="app" class="aa">
+    <h2>{{age}}</h2>
+    <input type="button" value="通过v-on事件修改年龄 +1" v-on:click="changeage">
+    <input type="button" value="通过@事件修改年龄 -1" @click="editage">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data:{
+            age:20
+        },
+        methods: {
+            changeage: function () {
+                this.age++;
+            },
+            editage: function () {
+                this.age--;
+            }
+        }
+
+    });
+</script>
+</body>
+</html>
