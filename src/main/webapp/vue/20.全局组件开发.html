@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20.全局组件开发</title>
+
+
+</head>
+<body>
+<div id="app">
+    <login></login>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    Vue.component('login',{
+        template: '<div><h1>用户登录</h1></div>'
+    })
+    const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        components: {}
+    });
+</script>
+</body>
+</html>

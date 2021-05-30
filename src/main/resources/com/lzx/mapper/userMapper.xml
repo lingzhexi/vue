@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzx.vue.dao.UserDao">
+    <insert id="save">
+        insert into t_user(id, username, age, salary, phoneCode)
+        values (#{id}, #{username}, #{age}, #{salary}, #{phoneCode});
+    </insert>
+    <update id="update" parameterType="User">
+        update t_user
+        set username = #{username},
+            age= #{age},
+            salary=#{salary},
+            phoneCode=#{phoneCode}
+        where id = #{id};
+
+
+    </update>
+    <delete id="delete" parameterType="java.lang.String">
+        delete
+        from t_user
+        where id = #{id}
+    </delete>
+
+    <select id="findAll" resultType="User">
+        select *
+        from t_user
+    </select>
+
+    <select id="findByNameOrCode" resultType="User">
+        select *
+        from t_user
+        <where>
+            <if test="name!=''">
+                username like concat('%',#{name},'%')
+            </if>
+            <if test="code!=''">
+                or phoneCode like concat('%',#{code},'%');
+            </if>
+        </where>
+    </select>
+    <select id="findOne" resultType="User">
+        select *
+        from t_user
+        where id = #{id}
+
+    </select>
+
+</mapper>
