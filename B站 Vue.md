@@ -1,3 +1,5 @@
+# Vue后端开发教程
+
 ## 1.Vue 入门
 
 ### 1.1 下载 Vuejs
@@ -274,7 +276,13 @@
 ```
 
 ```markdown
-# 总结	1.使用v- model指令可以实现数据的双向绑定	2.所谓双向绑定表单中数据变化导致vue实例data数据变化vue实例中data数据的变化导致表单中数据变化称之为双向绑定# MVWM架构  双向绑定机制	Model:数据vue   实例中绑定数据	VM: ViewMode1   监听器	View:页面		  页面展示的数据
+# 总结
+	1.使用v- model指令可以实现数据的双向绑定
+	2.所谓双向绑定表单中数据变化导致vue实例data数据变化vue实例中data数据的变化导致表单中数据变化称之为双向绑定
+# MVWM架构  双向绑定机制
+	Model:数据vue   实例中绑定数据
+	VM: ViewMode1   监听器
+	View:页面		  页面展示的数据
 ```
 
 
@@ -282,7 +290,43 @@
 ### 练习：记事本案例
 
 ```html
-<div id="app">    <input type="text" v-model="msg"> <input type="button" value="添加到记事本" @click="save()">    <br>    <ul>        <li v-for="item,index in lists">            {{index+1}}: {{item}} <a href="javascript:" @click="delItem(index)">删除</a>        </li>    </ul>    <span>总数量：{{lists.length}} 条</span> <input type="button" v-show="lists.length!=0" value="删除所有" @click="delAll()"></div><script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script><script>    const app = new Vue({        el: '#app',        data: {            lists:['今天下了一场暴雨','晚上回家吃小龙虾'],            msg:""        },        methods: {            save() {                if (''!=this.msg) {                    this.lists.push(this.msg);                    this.msg = '';                }            },            delItem(index) {                this.lists.splice(index, 1);            },            delAll() {                this.lists = [];            }        },        components: {}    });</script>
+<div id="app">
+    <input type="text" v-model="msg"> <input type="button" value="添加到记事本" @click="save()">
+    <br>
+    <ul>
+        <li v-for="item,index in lists">
+            {{index+1}}: {{item}} <a href="javascript:" @click="delItem(index)">删除</a>
+        </li>
+    </ul>
+    <span>总数量：{{lists.length}} 条</span> <input type="button" v-show="lists.length!=0" value="删除所有" @click="delAll()">
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            lists:['今天下了一场暴雨','晚上回家吃小龙虾'],
+            msg:""
+        },
+        methods: {
+            save() {
+                if (''!=this.msg) {
+                    this.lists.push(this.msg);
+                    this.msg = '';
+                }
+            },
+            delItem(index) {
+                this.lists.splice(index, 1);
+            },
+            delAll() {
+                this.lists = [];
+            }
+        },
+        components: {}
+    });
+</script>
 ```
 
 ----
@@ -334,7 +378,16 @@
 >  作用:用来与键盘中按键事件绑定在一起,用来修饰特定的按键事件的修饰符
 
 ```markdown
-# 按键修饰符	.enter	.tab	.delete (捕获“删除”和“退格”键)	.esc	.space	.up	.down	.left    .right
+# 按键修饰符
+	.enter
+	.tab
+	.delete (捕获“删除”和“退格”键)
+	.esc
+	.space
+	.up
+	.down
+	.left
+    .right
 ```
 
 ### 8.1 enter 回车键 
@@ -350,13 +403,19 @@
 > 用来捕获到tab键执行到当前标签是才会触发
 
 ```html
-<!--其他光标tab到该文本框的时候触发--><input type="text" v-model="msg" @keyup.tab="tabkey">
+<!--其他光标tab到该文本框的时候触发-->
+<input type="text" v-model="msg" @keyup.tab="tabkey">
 ```
 
 ### 8.3 其他
 
 ```html
-    <input type="text" v-model="msg" @keyup.delete="deleteKey">    <input type="text" v-model="msg" @keyup.esc="esckey">    <!--空格-->    <input type="text" v-model="msg" @keyup.space="spacekey">    <input type="text" v-model="msg" @keyup.left="leftkey">    <input type="text" v-model="msg" @keyup.right="rigthkey">
+    <input type="text" v-model="msg" @keyup.delete="deleteKey">
+    <input type="text" v-model="msg" @keyup.esc="esckey">
+    <!--空格-->
+    <input type="text" v-model="msg" @keyup.space="spacekey">
+    <input type="text" v-model="msg" @keyup.left="leftkey">
+    <input type="text" v-model="msg" @keyup.right="rigthkey">
 ```
 
 ## 9.Axios基本使用
@@ -380,7 +439,17 @@
 #### 9.2.2 POST请求方式
 
 ```js
-//POST请求axios.post('http://localhost:8080/save', {    username: 'xiaochen',    age: 23,    email: '5234@qq.com',    phone: '15352252514'}).then(function (response) {    console.log(response.data)}).catch(function (error) {    console.log(error);});
+//POST请求
+axios.post('http://localhost:8080/save', {
+    username: 'xiaochen',
+    age: 23,
+    email: '5234@qq.com',
+    phone: '15352252514'
+}).then(function (response) {
+    console.log(response.data)
+}).catch(function (error) {
+    console.log(error);
+});
 ```
 
 #### 9.2.3 axios并发请求
@@ -388,13 +457,80 @@
 > `并发请求`：将多个请求在同一时刻发送到后端服务接口,最后在集中处理每个请求的响应结果
 
 ```js
-    //1.创建查询所有请求    function findAll() {       return axios.get('http://localhost:8080/findAll?name=xiaochen');    }    //2.创建保存请求    function save() {        return axios.post('http://localhost:8080/save', {            username: 'xiaochen',            email: '5234@qq.com',            age: 23,            phone: '15352252514'        });    }    //并发操作    axios.all([findAll(), save()]).then(        axios.spread(function (res1, res2) {            console.log(res1.data);            console.log(res2.data);        })    );//用来发送一组并发请求
+    //1.创建查询所有请求
+    function findAll() {
+       return axios.get('http://localhost:8080/findAll?name=xiaochen');
+    }
+    //2.创建保存请求
+    function save() {
+        return axios.post('http://localhost:8080/save', {
+            username: 'xiaochen',
+            email: '5234@qq.com',
+            age: 23,
+            phone: '15352252514'
+        });
+    }
+    //并发操作
+    axios.all([findAll(), save()]).then(
+        axios.spread(function (res1, res2) {
+            console.log(res1.data);
+            console.log(res2.data);
+        })
+    );//用来发送一组并发请求
 ```
 
 ### 9.2 vue 结合axios查询天气
 
 ```html
-<div id="app">    <div>        <input type="text" v-model="name"@keyup.delete="show" @keyup.enter="searchCity">        <input type="button" value="搜索" @click="searchCity">    </div>    <span v-for="city in citys">        <a href="" @click.prevent="searchCitys(city)"> {{city}} &nbsp</a>    </span>    <hr>    <span v-show="isShow">{{name}}：今天天气是 {{weather}}</span></div><script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script><!--引入axios--><script src="https://unpkg.com/axios/dist/axios.min.js"></script><script>    const app = new Vue({        el: '#app',        data: {            name:'',            citys:['北京','上海','天津','深圳'],            weather: '',            isShow: false        },        methods: {            searchCity(){                let _this = this                axios.get("http://localhost:8080/city/find?name="+this.name).then(function (response) {                    console.log(response.data);                    _this.weather = response.data.message;                    _this.isShow = true;                }).catch(function (error) {                    console.log(error);                });            },            show() {                this.isShow = false;            },            searchCitys(name) {                this.name = name;                this.searchCity();            }        },        components: {}    });</script>
+<div id="app">
+    <div>
+        <input type="text" v-model="name"@keyup.delete="show" @keyup.enter="searchCity">
+        <input type="button" value="搜索" @click="searchCity">
+    </div>
+    <span v-for="city in citys">
+        <a href="" @click.prevent="searchCitys(city)"> {{city}} &nbsp</a>
+    </span>
+    <hr>
+    <span v-show="isShow">{{name}}：今天天气是 {{weather}}</span>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--引入axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            name:'',
+            citys:['北京','上海','天津','深圳'],
+            weather: '',
+            isShow: false
+        },
+        methods: {
+            searchCity(){
+                let _this = this
+                axios.get("http://localhost:8080/city/find?name="+this.name).then(function (response) {
+                    console.log(response.data);
+                    _this.weather = response.data.message;
+                    _this.isShow = true;
+                }).catch(function (error) {
+                    console.log(error);
+                });
+
+            },
+            show() {
+                this.isShow = false;
+            },
+            searchCitys(name) {
+                this.name = name;
+                this.searchCity();
+            }
+
+        },
+        components: {}
+    });
+</script>
 ```
 
 
@@ -408,7 +544,37 @@
 ![Vue 实例生命周期](https://cn.vuejs.org/images/lifecycle.png)
 
 ```markdown
-# Vue生命周期总结	1.初始化阶段		  beforeCreate() {//1.生命周期中第一个函数,该函数在执行时vue实例仅仅完成了自身事件的绑定和生命周期函的初始化工作,Vue实例中还没有 Data el methods相关属性            console.log("beforeCreate:" + this.msg);        },        created() {            /2.生命周期中第二个函数,该函数在执行时vue实例已经初始化了data属性和 methods中相关方法            console.log("created:" + this.msg);        },        beforeMount() {//3.生命周期中第三个函数,该函数在执行时vue将E1中指定作用范围作为模板编译            console.log(" beforeMount:" + document.getElementById("sp").innerText);        },        mounted() {//4.生命周期中第四个函数,该函数在执行过程中,已经将数据渲染到界面中并且已经更新页面            console.log("Mounted: " + document.getElementById("sp").innerText);                 	2.运行阶段        beforeUpdate() {//5.生命周期中第五个函数,该函数是data中数据发生变化时执行这个事件执行时仅仅是vue实例中data数据变化页面显示的依然是原始数据            console.log("beforeUpdate: " + this.msg);            console.log("beforeUpdate: " + document.getElementById("sp").innerText);        },        updated() {//6.生命周期中第六个函数,该函数执行时data中数据发生变化,页面中数据也发生了变化页面中数据已经和data中数据一致            console.log("updated: " + this.msg);            console.log("updated: " + document.getElementById("sp").innerText);        },            3.销毁阶段        beforeDestory() {//7.生命周期第七个函数,该函数执行时,ue中所有数据 methods componet都没销到        },        destoryed() {//8.生命周期的第八个函数,该函数执行时,Wue实例彻底销毁        }
+# Vue生命周期总结
+	1.初始化阶段
+		  beforeCreate() {//1.生命周期中第一个函数,该函数在执行时vue实例仅仅完成了自身事件的绑定和生命周期函的初始化工作,Vue实例中还没有 Data el methods相关属性
+            console.log("beforeCreate:" + this.msg);
+        },
+        created() {
+            /2.生命周期中第二个函数,该函数在执行时vue实例已经初始化了data属性和 methods中相关方法
+            console.log("created:" + this.msg);
+        },
+        beforeMount() {//3.生命周期中第三个函数,该函数在执行时vue将E1中指定作用范围作为模板编译
+            console.log(" beforeMount:" + document.getElementById("sp").innerText);
+        },
+        mounted() {//4.生命周期中第四个函数,该函数在执行过程中,已经将数据渲染到界面中并且已经更新页面
+            console.log("Mounted: " + document.getElementById("sp").innerText);
+         
+        
+	2.运行阶段
+        beforeUpdate() {//5.生命周期中第五个函数,该函数是data中数据发生变化时执行这个事件执行时仅仅是vue实例中data数据变化页面显示的依然是原始数据
+            console.log("beforeUpdate: " + this.msg);
+            console.log("beforeUpdate: " + document.getElementById("sp").innerText);
+        },
+        updated() {//6.生命周期中第六个函数,该函数执行时data中数据发生变化,页面中数据也发生了变化页面中数据已经和data中数据一致
+            console.log("updated: " + this.msg);
+            console.log("updated: " + document.getElementById("sp").innerText);
+        },
+        
+    3.销毁阶段
+        beforeDestory() {//7.生命周期第七个函数,该函数执行时,ue中所有数据 methods componet都没销到
+        },
+        destoryed() {//8.生命周期的第八个函数,该函数执行时,Wue实例彻底销毁
+        }
 ```
 
 ## 11.Vue中的组件( Component)
@@ -425,11 +591,19 @@ Wue进行开发时页面管理,方便开发人员维护
 说明:全局组件注册给vue实例,日后可以在任意ue实例的范围内使用该组件
 
 ```js
-//1.开发全局组件    Vue.component('login',(        template:'<div><h1>用户登录</h1></div>'    });//2.使用全局组件在Vue实例范围内    <login></login>
+//1.开发全局组件
+    Vue.component('login',(
+        template:'<div><h1>用户登录</h1></div>'
+    });
+//2.使用全局组件在Vue实例范围内
+    <login></login>
 ```
 
 ```markdown
-# 注意	1.Vue.component用来开发全局组件  参数1:组件的名称  参数2: 组件配置{} template:'' 用来书写组件的htm1代码 template中必须有且只有一个root元素    2.使用时需要在vue的作用范围内根据组件名使用全局组件    3.如果在注册组件过程中使用驼峰命名组件的方式在使用组件时必须将驼峰的所有单词小写加入-线进行使用
+# 注意
+	1.Vue.component用来开发全局组件  参数1:组件的名称  参数2: 组件配置{} template:'' 用来书写组件的htm1代码 template中必须有且只有一个root元素
+    2.使用时需要在vue的作用范围内根据组件名使用全局组件
+    3.如果在注册组件过程中使用驼峰命名组件的方式在使用组件时必须将驼峰的所有单词小写加入-线进行使用
 ```
 
 
@@ -486,16 +660,7 @@ Wue进行开发时页面管理,方便开发人员维护
 1.组件中定义属于组件的数据
 
 ```js
-//组件声明的配置对象
- const login = {
-        template: "<div><h1>{{name}} Vue<ul><li v-for='item,index in lists'>{{index+1}}=={{item}}</li></ul></h1></div>",
-        data() {
-            return {
-                name: 'learning',
-                lists: ['java', 'js', 'python']
-            }
-        }
-    }
+//组件声明的配置对象 const login = {        template: "<div><h1>{{name}} Vue<ul><li v-for='item,index in lists'>{{index+1}}=={{item}}</li></ul></h1></div>",        data() {            return {                name: 'learning',                lists: ['java', 'js', 'python']            }        }    }
 ```
 
 2.组件定义事件
@@ -576,9 +741,17 @@ const app = new Vue({
 
 `注意事项`
 
-![image-20210602014845994](Z:\Mine\vue\B站 Vue.assets\image-20210602014845994.png)
+![image-20210602014845994](Z:\Mine\vue\B站 Vue.assets\image-20210602014845994-1622575681334.png)
 
+### 12.1 路由
 
+`路由：根据请求的路径按照一定的路由规则进行请求的转发从而帮助我们实现统一的请求管理`
+
+### 12.2 作用
+
+​	`用来在vue中实现组件间的动态切换`
+
+### 12.3 使用
 
 1.引入路由
 
@@ -644,4 +817,84 @@ const app = new Vue({
 <a href="#/reg">注册</a>
 ```
 
-  
+###   12.4  router-link使用
+
+​	`作用：用来替换我们在切换路由时使用a标签切换路由`
+
+​	`好处：就是可以自动给路由路径加入#不需要手动加入`
+
+```html
+<router-link to="/login" tag="button">登录</router-link>
+<router-link to="/reg" tag="span">注册</router-link>
+```
+
+
+
+```markdown
+# 总结
+	1. router-link用来替换使用a标签实现路由切换	好处是不需要书写#号直接书写路由路径
+	2. router-1 ink to属性用来书写路由路径	tag属性:用来将 router-1ink渲染成指定的标签
+```
+
+### 12.5 默认路由
+
+​	`作用:用来在第一次进入界面是显示一个默认的组件`
+
+```js
+/* 定义路由 */
+    const router = new VueRouter({
+        routes:[
+            {path:"/",redirect:'/login'}, // redirect:用来当访问的是默认路由"/"时	跳转到指定的路由展示	推荐使用
+            {path:"/login",component:login},
+            {path:"/reg",component:register}
+        ]
+    })
+```
+
+### 12.6 路由中参数传递
+
+- 第一种方式传递参数 传统方式
+
+1. 通过?号形式拼接参数
+
+   ```html
+   <router-link to="/login?id=1&name=张三" tag="button">i need login</router-link>
+   ```
+
+2. 组件中获取参数
+
+   ```js
+   const login = {
+           template: '#login',
+           created() {
+               console.log("id: " + this.$route.query.id + "  ==> name:" + this.$route.query.name);
+           }
+       }
+   ```
+
+- 第二种方式传递参数 restful
+
+1. 通过使用路径方式传递
+
+   ```js
+   <router-link to="/reg/2/李四" tag="button">i need register</router-link>
+   const router = new VueRouter({
+       routes: [
+           {path: '/reg/:id/:name', component: reg}
+       ]
+   })
+   ```
+
+2. 组件中获取参数
+
+   ```js
+   const reg = {
+       template: '#reg',
+       created() {
+           console.log('id: ' + this.$route.params.id + '  ===>name:' + this.$route.params.name);
+       }
+   }
+   ```
+
+   
+
