@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>23.在局部组件中使用prop接收动态数据</title>
+
+
+</head>
+<body>
+<div id="app">
+    <logins :email="email" :salary="salary" user-name="小陈" age="24"></logins>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //定义一个局部组件声明
+    const logins = {
+        template: "<template><h1>welcome {{userName}} ,age {{age}}, email: {{email}},salary {{salary}} !</h1></template>",
+        props:["userName","age","email","salary"]
+    }
+
+	const app = new Vue({
+        el:'#app',
+        data:{
+			email:'333@qq.com',
+			salary:'200'
+		},
+        methods:{},
+        components:{
+            logins
+        }
+    });
+
+</script>
+</body>
+</html>

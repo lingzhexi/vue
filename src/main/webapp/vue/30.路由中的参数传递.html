@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>30.路由中的参数传递</title>
+    <!-- 引入bootstrap css -->
+
+
+</head>
+<body>
+<div id="app">
+    <!-- 显示路由组件 -->
+    <router-link to="/login?id=1&name=张三" tag="button">i need login</router-link>
+    <router-link to="/reg/2/李四" tag="button">i need register</router-link>
+    <router-view></router-view>
+</div>
+
+<template id="login">
+    <h1>login page ,username: {{this.$route.query.name}} id:{{this.$route.query.id}}</h1>
+</template>
+<template id="reg">
+    <h1>reg page</h1>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../bootvue/js/vue-router.js"></script>
+<script>
+    /* 创建模板 */
+
+    const login = {
+        template: '#login',
+        created() {
+            console.log("id: " + this.$route.query.id + "  ==> name:" + this.$route.query.name);
+        }
+    }
+    const reg = {
+        template: '#reg',
+        created() {
+            console.log('id: ' + this.$route.params.id + '  ===>name:' + this.$route.params.name);
+        }
+    }
+    const router = new VueRouter({
+        routes: [
+            {path: '/', redirect: "/login"},
+            {path: '/login', component: login},
+            {path: '/reg/:id/:name', component: reg}
+        ]
+    })
+    /* 定义路由 */
+    const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        router
+    });
+</script>
+</body>
+</html>

@@ -13,7 +13,7 @@
     <h1 v-if="false">袁老一路走好</h1>
     <h1 v-if="false">吴老一路走好</h1>
     <h1 v-if="false">浪费粮食</h1>
-    <img  v-if="isShow"  :src="src" v-bind:title="title"/>
+    <img  v-if="isShow"  :src="src" :title="title"/>
     <img  v-if="isShow"  v-bind:src="src" v-bind:title="title"/>
     <div>
         <input type="button" value="点击我改变title" @click="changeTitle('这是修改后的title')">

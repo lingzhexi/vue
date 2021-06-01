@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>24.组件中定义自己的数据</title>
+
+
+</head>
+<body>
+<div id="app">
+	<login :username="username"></login>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script> 
+    //定义一个局部组件声明
+    const login = {
+        template: "<div><h1>欢迎：{{name}} </h1></div>",
+		data(){
+			return {
+				name: this.username
+			};
+		},
+		props: ["uesrname"]
+	}
+
+	const app = new Vue({
+        el:'#app',
+        data:{
+			username: '小hei' 
+		},
+        methods:{},
+        components:{
+            login  //注册组件
+        }
+    });
+
+</script>
+</body>
+</html>

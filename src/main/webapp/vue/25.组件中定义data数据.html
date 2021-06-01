@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>25.组件中定义data数据</title>
+
+
+</head>
+<body>
+<div id="app">
+    <login></login>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    const login = {
+        template: "<div><h1>{{name}} Vue<ul><li v-for='item,index in lists'>{{index+1}}=={{item}}</li></ul></h1></div>",
+        data() {
+            return {
+                name: 'learning',
+                lists: ['java', 'js', 'python']
+            }
+        }
+    }
+    const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        components: {
+            login
+        }
+    });
+</script>
+</body>
+</html>

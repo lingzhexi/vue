@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>28.Vue路由</title>
+    <!-- 引入bootstrap css -->
+
+
+</head>
+<body>
+<div id="app">
+    <!-- 显示路由组件 -->
+    <a href="#/login">登录</a>
+    <a href="#/reg">注册</a>
+    <router-view></router-view>
+</div>
+
+<template id="login">
+    <h1>登录页面</h1>
+</template>
+<template id="reg">
+    <h1>注册页面</h1>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+    /* 创建模板 */
+    const login = {
+        template: '#login'
+    }
+    const register = {
+        template: '#reg'
+    }
+    /* 定义路由 */
+    const router = new VueRouter({
+        routes:[
+            {path:"/login",component:login},
+            {path:"/reg",component:register}
+        ]
+    })
+    const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        router:router
+
+    });
+</script>
+</body>
+</html>

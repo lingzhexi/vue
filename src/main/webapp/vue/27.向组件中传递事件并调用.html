@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>27.向组件中传递事件并调用</title>
+
+
+</head>
+<body>
+<div id="app">
+    <login :name="username" @fun=fun></login>
+</div>
+
+<template id="login">
+    <div>
+        <h1>Vue {{uname}}</h1>
+        <input type='button' value='点我' @click='change'>
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    const login = {
+        template: "#login",
+        data() {
+            return {
+                uname: this.name
+            };
+        },
+        methods: {
+            change() {
+                this.uname = '点击后触发Vue事件'
+				this.$emit('fun')
+            },
+			
+        },
+        props: ['name']
+    }
+    const app = new Vue({
+        el: '#app',
+        data: {
+            username: 'xiaochen'
+        },
+        methods: {
+			fun(){
+				alert('Vue实例的事件')
+			}
+		},
+        components: {
+            login
+        }
+    });
+</script>
+</body>
+</html>

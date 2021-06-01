@@ -8,25 +8,25 @@
 </head>
 <body>
 <div id="app">
-    <login></login>
-    <login></login>
-    <login></login>
-    <login></login>
+    <login v-bind:user-name="name" age="24"></login>
 </div>
 <!--通过模板标签形式组件注册局部组件-->
 <template id="loginTemplate">
-    <h1>用户管理</h1>
+    <h1>欢迎：{{userName}} 年龄：{{age}}</h1>
 </template>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
     //局部组件模板
     let login = { //具体组件模板
-        template: '#loginTemplate'
+        template: '#loginTemplate',
+        props:['userName','age']
     }
     const app = new Vue({
         el: '#app',
-        data: {},
+        data: {
+            name:'小陈陈'
+        },
         methods: {},
         components: {  //用来注册局部组件
             login //注册局部组件
