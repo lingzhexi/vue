@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>31.vue中路由嵌套路由</title>
+
+
+</head>
+<body>
+<div id="app">
+    <router-link  to="/product">product manager</router-link>
+    <router-view></router-view>
+</div>
+
+<template id="product">
+    <div>
+        <h1>product manager</h1>
+        <router-link to="/product/add">product add</router-link>
+        <router-link to="/product/edit">product edit</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../bootvue/js/vue-router.js"></script>
+<script>
+    const product = {
+        template: '#product'
+    }
+    const add = {
+        template: '<h1>product add</h1>'
+    }
+    const edit = {
+        template: '<h1>product edit</h1>'
+    }
+    const router = new VueRouter({
+        routes:[
+            {
+                path: '/product',
+                component:product,
+                children:[
+                    {path:'add',component: add},
+                    {path:'edit',component: edit},
+                ]
+
+
+            }
+        ]
+    });
+    const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        router
+    });
+</script>
+</body>
+</html>
